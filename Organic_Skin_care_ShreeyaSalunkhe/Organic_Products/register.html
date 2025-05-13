@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Natural Skincare Shop - Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      padding: 20px;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    .form-container {
+      width: 320px;
+      margin: auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .form-container label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .form-container button:disabled {
+      background-color: #999;
+    }
+    .form-container button:hover:not(:disabled) {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+    .success {
+      border-color: green !important;
+    }
+    .fail {
+      border-color: red !important;
+    }
+    .show-pass {
+      display: flex;
+      align-items: center;
+      margin: 5px 0 15px 0;
+    }
+    .show-pass input {
+      margin-right: 8px;
+      width: auto;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Register</h1>
+</header>
+
+<div class="form-container">
+  <form id="registerForm" action="index.html" method="POST" onsubmit="return validateForm()">
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" required />
+    <div id="name-error" class="error"></div>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required />
+    <div id="email-error" class="error"></div>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" required />
+    <div class="show-pass">
+      <input type="checkbox" id="togglePass"> <label for="togglePass">Show Password</label>
+    </div>
+    <div id="password-error" class="error"></div>
+
+    <label for="repassword">Re-enter Password</label>
+    <input type="password" id="repassword" required />
+    <div class="show-pass">
+      <input type="checkbox" id="toggleRePass"> <label for="toggleRePass">Show Re-enter Password</label>
+    </div>
+    <div id="repassword-error" class="error"></div>
+
+    <button type="submit" id="submit-btn" disabled>Register</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 Natural Skincare Shop</p>
+</footer>
+
+<script>
+  const fullname = document.getElementById('fullname');
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+  const repassword = document.getElementById('repassword');
+  const submitBtn = document.getElementById('submit-btn');
+
+  const togglePass = document.getElementById('togglePass');
+  const toggleRePass = document.getElementById('toggleRePass');
+
+  let validName = false, validEmail = false, validPass = false, validRePass = false;
+
+  fullname.addEventListener('input', () => {
+    if (fullname.value.trim().length >= 3) {
+      validName = true;
+      fullname.classList.add('success');
+      fullname.classList.remove('fail');
+      document.getElementById('name-error').textContent = '';
+    } else {
+      validName = false;
+      fullname.classList.add('fail');
+      fullname.classList.remove('success');
+      document.getElementById('name-error').textContent = 'Full name must be at least 3 characters.';
+    }
+    enableSubmit();
+  });
+
+  email.addEventListener('input', () => {
+    const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (pattern.test(email.value)) {
+      validEmail = true;
+      email.classList.add('success');
+      email.classList.remove('fail');
+      document.getElementById('email-error').textContent = '';
+    } else {
+      validEmail = false;
+      email.classList.add('fail');
+      email.classList.remove('success');
+      document.getElementById('email-error').textContent = 'Enter a valid email address.';
+    }
+    enableSubmit();
+  });
+
+  password.addEventListener('input', () => {
+    const passPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    if (passPattern.test(password.value)) {
+      validPass = true;
+      password.classList.add('success');
+      password.classList.remove('fail');
+      document.getElementById('password-error').textContent = '';
+    } else {
+      validPass = false;
+      password.classList.add('fail');
+      password.classList.remove('success');
+      document.getElementById('password-error').textContent =
+        'Password must be 6–16 chars, include a number and special character.';
+    }
+    checkRePassword();
+    enableSubmit();
+  });
+
+  repassword.addEventListener('input', () => {
+    checkRePassword();
+    enableSubmit();
+  });
+
+  function checkRePassword() {
+    if (repassword.value === password.value && password.value !== '') {
+      validRePass = true;
+      repassword.classList.add('success');
+      repassword.classList.remove('fail');
+      document.getElementById('repassword-error').textContent = '';
+    } else {
+      validRePass = false;
+      repassword.classList.add('fail');
+      repassword.classList.remove('success');
+      document.getElementById('repassword-error').textContent = 'Passwords do not match.';
+    }
+  }
+
+  function enableSubmit() {
+    submitBtn.disabled = !(validName && validEmail && validPass && validRePass);
+  }
+
+  function validateForm() {
+    return validName && validEmail && validPass && validRePass;
+  }
+
+  togglePass.addEventListener('change', () => {
+    password.type = togglePass.checked ? 'text' : 'password';
+  });
+
+  toggleRePass.addEventListener('change', () => {
+    repassword.type = toggleRePass.checked ? 'text' : 'password';
+  });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Natural Skincare Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      padding: 20px;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    .form-container {
+      width: 300px;
+      margin: auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .form-container button:disabled {
+      background-color: #aaa;
+    }
+    .form-container button:hover:not(:disabled) {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    .success {
+      border-color: green !important;
+    }
+    .fail {
+      border-color: red !important;
+    }
+    .toggle-btn {
+      background-color: #ddd;
+      border: none;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      display: block;
+      margin-left: auto;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Login</h1>
+</header>
+
+<div class="form-container">
+  <form id="loginForm">
+    <label for="username">Username</label>
+    <input type="text" id="username" required />
+    <div id="user-error" class="error"></div>
+
+    <label for="pass">Password</label>
+    <input type="password" id="pass" required />
+    <button id="togglePassBtn" class="toggle-btn" type="button">Show Password</button>
+    <div id="pass-error" class="error"></div>
+
+    <button type="submit" id="submit-btn" disabled>Login</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 Natural Skincare Shop</p>
+</footer>
+
+<script>
+  const username = document.getElementById('username');
+  const pass = document.getElementById('pass');
+  const submitBtn = document.getElementById('submit-btn');
+  const togglePassBtn = document.getElementById('togglePassBtn');
+  const userError = document.getElementById('user-error');
+  const passError = document.getElementById('pass-error');
+
+  let validUsername = false;
+  let validPass = false;
+
+  username.addEventListener('input', () => {
+    if (username.value.length >= 5) {
+      validUsername = true;
+      username.classList.add('success');
+      username.classList.remove('fail');
+      userError.textContent = '';
+    } else {
+      validUsername = false;
+      username.classList.add('fail');
+      username.classList.remove('success');
+      userError.textContent = 'Username must be at least 5 characters long.';
+    }
+    checkValidity();
+  });
+
+  pass.addEventListener('input', () => {
+    const pattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,16}$/;
+    if (pattern.test(pass.value)) {
+      validPass = true;
+      pass.classList.add('success');
+      pass.classList.remove('fail');
+      passError.textContent = '';
+    } else {
+      validPass = false;
+      pass.classList.add('fail');
+      pass.classList.remove('success');
+      passError.textContent = 'Password must be 6–16 characters with at least 1 number and 1 special character.';
+    }
+    checkValidity();
+  });
+
+  function checkValidity() {
+    submitBtn.disabled = !(validUsername && validPass);
+  }
+
+  togglePassBtn.addEventListener('click', () => {
+    const type = pass.getAttribute('type') === 'password' ? 'text' : 'password';
+    pass.setAttribute('type', type);
+    togglePassBtn.textContent = type === 'text' ? 'Hide Password' : 'Show Password';
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validUsername && validPass) {
+      localStorage.setItem('username', username.value); // Store username
+      alert('Login successful!');
+      window.location.href = 'index.html';
+    } else {
+      alert('Please check your credentials.');
+    }
+  });
+</script>
+
+</body>
+</html>
