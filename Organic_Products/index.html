@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Skincare Shop - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        .top-right a {
+            color: white;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .top-right a:hover {
+            background-color: #45a049;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .product {
+            background-color: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .product button:hover {
+            background-color: #45a049;
+        }
+        #cart-count {
+            background-color: red;
+            border-radius: 50%;
+            padding: 2px 10px;
+            color: white;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Natural Skincare Shop</h1>
+</header>
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+</div>
+
+<div class="top-right">
+    <span id="user-greeting"></span>
+    <a href="login.html" id="login-link">Login</a>
+    <a href="register.html">Register</a>
+    <a href="#" id="logout-link" style="display: none;">Logout</a>
+</div>
+
+<div class="container">
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\natural soap.jpg" alt="Natural Soap">
+        <h3>Natural Soap</h3>
+        <p>$10</p>
+        <button onclick="addToCart('Natural Soap', 10)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\organic cream.jpg" alt="Organic Cream">
+        <h3>Organic Cream</h3>
+        <p>$15</p>
+        <button onclick="addToCart('Organic Cream', 15)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\herbal serum.jpg" alt="Herbal Serum">
+        <h3>Herbal Serum</h3>
+        <p>$20</p>
+        <button onclick="addToCart('Herbal Serum', 20)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\aleo vera gel.jpg" alt="Aloe Vera Gel">
+        <h3>Aloe Vera Gel</h3>
+        <p>$12</p>
+        <button onclick="addToCart('Aloe Vera Gel', 12)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\coconut oil.jpg" alt="Coconut Oil">
+        <h3>Coconut Oil</h3>
+        <p>$18</p>
+        <button onclick="addToCart('Coconut Oil', 18)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\rose water.jpg" alt="Rose Water Toner">
+        <h3>Rose Water Toner</h3>
+        <p>$8</p>
+        <button onclick="addToCart('Rose Water Toner', 8)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\lavender facemask.jpg" alt="Lavender Face Mask">
+        <h3>Lavender Face Mask</h3>
+        <p>$22</p>
+        <button onclick="addToCart('Lavender Face Mask', 22)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\honey scrub.jpg" alt="Honey Scrub">
+        <h3>Honey Scrub</h3>
+        <p>$14</p>
+        <button onclick="addToCart('Honey Scrub', 14)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\green tea serum.jpg" alt="Green Tea Serum">
+        <h3>Green Tea Serum</h3>
+        <p>$25</p>
+        <button onclick="addToCart('Green Tea Serum', 25)">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="C:\Users\Sarika Kene\Desktop\College work\SEM IV\WP\to_do_list\images\vitaminC serum.webp" alt="Vitamin C Cream">
+        <h3>Vitamin C Cream</h3>
+        <p>$30</p>
+        <button onclick="addToCart('Vitamin C Cream', 30)">Add to Cart</button>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Natural Skincare Shop</p>
+</footer>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const userGreeting = document.getElementById('user-greeting');
+    const loginLink = document.getElementById('login-link');
+    const logoutLink = document.getElementById('logout-link');
+
+    function updateCartCount() {
+        const cartCount = cart.length;
+        document.getElementById('cart-count').textContent = cartCount;
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function checkUser  () {
+        const username = localStorage.getItem('username');
+        if (username) {
+            userGreeting.textContent = `Hello, ${username}`;
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline';
+        } else {
+            userGreeting.textContent = '';
+            loginLink.style.display = 'inline';
+            logoutLink.style.display = 'none';
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('username');
+        checkUser  ();
+    }
+
+    logoutLink.addEventListener('click', logout);
+    updateCartCount();
+    checkUser  ();
+</script>
+
+</body>
+</html>
