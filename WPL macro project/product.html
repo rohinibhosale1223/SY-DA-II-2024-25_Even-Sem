@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Page - Second Hand Consoles</title>
+    <style>
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .product {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            border: 3px solid #333;
+        }
+  
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cart-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cart-summary {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .cart-modal h3 {
+            margin-bottom: 10px;
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        .close-cart {
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="C:\\Users\\ojas\\OneDrive\\Desktop\\WPL\\WPL TA-1\\homepage.html">Home</a></li>
+        </ul>
+        <button onclick="openCart()">Shopping Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+
+    <div class="cart-info">
+        <h2>Our Second-Hand Gaming Consoles</h2>
+        <p>Browse our collection of high-quality used gaming consoles.</p>
+    </div>
+
+    <div class="cart-summary">
+        Total Price: $<span id="total-price">0</span>
+    </div>
+
+    <div class="product-container">
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\ps 4.jpg" alt="PS4">
+            <p>Price: $350</p>
+            <button onclick="addToCart('PS4', 350)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\ps5.jpg" alt="PS5">
+            <p>Price: $500</p>
+            <button onclick="addToCart('PS5', 500)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\xbox one.jpeg" alt="Xbox One">
+            <p>Price: $300</p>
+            <button onclick="addToCart('Xbox One', 300)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\xbox series x.jpeg" alt="Xbox Series X">
+            <p>Price: $600</p>
+            <button onclick="addToCart('Xbox Series X', 600)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\nintendo switch.jpeg" alt="Nintendo Switch">
+            <p>Price: $280</p>
+            <button onclick="addToCart('Nintendo Switch', 280)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\ps3.jpg" alt="PS3">
+            <p>Price: $200</p>
+            <button onclick="addToCart('PS3', 200)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\xbox 360.jpeg" alt="Xbox 360">
+            <p>Price: $150</p>
+            <button onclick="addToCart('Xbox 360', 150)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="C:\Users\ojas\OneDrive\Desktop\WPL\WPL TA-1\images\nintendo wii.jpeg" alt="Nintendo Wii">
+            <p>Price: $180</p>
+            <button onclick="addToCart('Wii U', 180)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="cart-modal">
+        <h3>Shopping Cart</h3>
+        <ul class="cart-items" id="cart-items"></ul>
+        <p>Total: $<span id="modal-total-price">0</span></p>
+        <button class="close-cart" onclick="closeCart()">Close</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Tsunami. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cartItems = [];
+            let cartCountElement = document.getElementById('cart-count');
+            let totalPriceElement = document.getElementById('total-price');
+            let modalTotalPrice = document.getElementById('modal-total-price');
+            let cartModal = document.getElementById('cart-modal');
+            let cartList = document.getElementById('cart-items');
+            let totalPrice = 0;
+
+            window.addToCart = function(product, price) {
+                cartItems.push({ name: product, price: price });
+                cartCountElement.innerText = cartItems.length;
+                totalPrice += price;
+                totalPriceElement.innerText = totalPrice;
+            };
+
+            window.openCart = function() {
+                cartList.innerHTML = cartItems.map(item => `<li>${item.name} - $${item.price}</li>`).join('');
+                modalTotalPrice.innerText = totalPrice;
+                cartModal.style.display = 'block';
+            };
+
+            window.closeCart = function() {
+                cartModal.style.display = 'none';
+            };
+        });
+    </script>
+</body>
+</html>

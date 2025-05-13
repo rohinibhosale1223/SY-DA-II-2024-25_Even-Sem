@@ -1,0 +1,22 @@
+<div class="content">
+        <h3>Products</h3>
+        <p>Check out our latest products!</p>
+        <div class="image-container">
+            <div>
+                <img src="C:\\Users\\ojas\\OneDrive\\Desktop\\WPL\\WPL TA-1\\images\\ps2.jpg" alt="PS2">
+                <button class="add-to-cart" onclick="addToCart('PS2')">Add to Cart</button>
+            </div>
+            <div>
+                <img src="C:\\Users\\ojas\\OneDrive\\Desktop\\WPL\\WPL TA-1\\images\\ps3.jpg" alt="PS3">
+                <button class="add-to-cart" onclick="addToCart('PS3')">Add to Cart</button>
+            </div>
+            <div>
+                <img src="C:\\Users\\ojas\\OneDrive\\Desktop\\WPL\\WPL TA-1\\images\\ps 4.jpg" alt="PS4">
+                <button class="add-to-cart" onclick="addToCart('PS4')">Add to Cart</button>
+            </div>
+            <div>
+                <img src="C:\\Users\\ojas\\OneDrive\\Desktop\\WPL\\WPL TA-1\\images\\ps5.jpg" alt="PS5">
+                <button class="add-to-cart" onclick="addToCart('PS5')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
