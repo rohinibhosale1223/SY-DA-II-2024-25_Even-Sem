@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Library Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('library-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            background: #27ae60;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background: #219150;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .category-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .category-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .category-item h3 {
+            margin: 10px 0;
+        }
+        .category-item p {
+            font-size: 14px;
+            color: #555;
+        }
+        .view-books {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .view-books:hover {
+            background: #219150;
+        }
+        .cart-counter {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 14px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="products.html" class="active">Products</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="cart.html">Cart <span id="cart-count" class="cart-counter">0</span></a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h1>Browse Our Book Categories</h1>
+        <p>Find books from different genres and categories. Click to explore more.</p>
+        
+        <div class="categories">
+            <div class="category-item">
+                <img src="C:\Users\DELL\OneDrive\Desktop\LIBARY MANAGEMANT\images (1).jpeg" alt="Fiction Books">
+                <h3>Fiction</h3>
+                <p>Explore imaginative stories from best-selling authors.</p>
+                <a href="books.html" class="view-books">View Books</a>
+            </div>
+
+            <div class="category-item">
+                <img src="C:\Users\DELL\OneDrive\Desktop\LIBARY MANAGEMANT\download (3).jpeg" alt="Non-Fiction Books">
+                <h3>Non-Fiction</h3>
+                <p>Gain knowledge and insights from real-life stories.</p>
+                <a href="books.html" class="view-books">View Books</a>
+            </div>
+
+            <div class="category-item">
+                <img src="C:\Users\DELL\OneDrive\Desktop\LIBARY MANAGEMANT\download (2).jpeg" alt="Comic Books">
+                <h3>Comics & Manga</h3>
+                <p>Enjoy exciting stories through illustrations.</p>
+                <a href="books.html" class="view-books">View Books</a>
+            </div>
+
+            <div class="category-item">
+                <img src="C:\Users\DELL\OneDrive\Desktop\LIBARY MANAGEMANT\download (1).jpeg" alt="Science Books">
+                <h3>Science & Technology</h3>
+                <p>Stay updated with the latest in science and tech.</p>
+                <a href="books.html" class="view-books">View Books</a>
+            </div>
+
+            <div class="category-item">
+                <img src="C:\Users\DELL\OneDrive\Desktop\LIBARY MANAGEMANT\download.jpeg" alt="History Books">
+                <h3>History</h3>
+                <p>Learn about past events and historical figures.</p>
+                <a href="books.html" class="view-books">View Books</a>
+            </div>
+
+            <div class="category-item">
+                <img src="C:\Users\DELL\OneDrive\Desktop\LIBARY MANAGEMANT\download (4).jpeg" alt="Self-Help Books">
+                <h3>Self-Help & Motivation</h3>
+                <p>Improve yourself with guidance from experts.</p>
+                <a href="books.html" class="view-books">View Books</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let cartCount = 0;
+        document.getElementById("cart-count").textContent = cartCount;
+    </script>
+</body>
+</html>

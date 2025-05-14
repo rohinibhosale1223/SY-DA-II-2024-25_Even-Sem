@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Library Management System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #6F4F37;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: 500;
+    }
+
+    nav a.active {
+      border-bottom: 2px solid #fff;
+    }
+
+    .about-hero {
+      background-color: #D8CAB8;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .about-hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .about-hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .about-content {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .about-content h2 {
+      color: #6F4F37;
+      margin-bottom: 10px;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .team-section {
+      padding: 40px 20px;
+      background-color: #fff;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .team-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .team-member {
+      width: 200px;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .team-member img {
+      width: 100%;
+      border-radius: 10px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    footer {
+      background-color: #6F4F37;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer .socials a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">📚 MyLibrary</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="about-hero">
+    <h1>About Our Library</h1>
+    <p>Empowering minds and communities through books, technology, and lifelong learning opportunities.</p>
+  </section>
+
+  <section class="about-content">
+    <h2>Our Mission</h2>
+    <p>
+      The Library Management System was developed to simplify how readers interact with the library. From borrowing books to accessing research journals and managing digital records, we aim to deliver a seamless library experience for students, educators, and lifelong learners.
+    </p>
+    <p>
+      Our system promotes digital literacy, environmental sustainability, and ease of access to a vast catalog of resources. Whether you're preparing for an exam, doing research, or exploring your favorite genre, our library is here to support your journey.
+    </p>
+
+    <h2>Our Vision</h2>
+    <p>
+      We envision a future where every student, regardless of background, can access quality information. Our platform is designed to reduce library bottlenecks, encourage self-learning, and support educational institutions with reliable data management tools.
+    </p>
+  </section>
+
+  <section class="team-section">
+    <h2>Meet the Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200x200?text=Riya" alt="Riya Sharma">
+        <h3>Riya Sharma</h3>
+        <p>Head Librarian</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200x200?text=Arjun" alt="Arjun Mehta">
+        <h3>Arjun Mehta</h3>
+        <p>System Developer</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200x200?text=Sneha" alt="Sneha Kapoor">
+        <h3>Sneha Kapoor</h3>
+        <p>User Coordinator</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MyLibrary. All rights reserved.</p>
+    <div class="socials">
+      <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+    </div>
+  </footer>
+
+</body>
+</html>
+
