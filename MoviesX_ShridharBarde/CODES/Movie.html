@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoviesX - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("IMAGE/Main.jpg") no-repeat center center fixed;  /* Corrected path */
+      background-size: cover;
+      color: white;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: linear-gradient(to right, cyan, red);
+      text-align: center;
+      padding: 20px;
+      font-size: 44px;
+      font-weight: bold;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: black;
+      padding: 15px;
+      position: relative;
+      color: white;
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+    .nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+    .nav-right {
+      gap: 20px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      transition: background 0.3s;
+    }
+
+    .nav a:hover {
+      background: red;
+      border-radius: 5px;
+    }
+
+    .profile-icon {
+      position: relative;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+
+    #profile-hover-text {
+      display: none;
+      position: absolute;
+      bottom: 35px;
+      left: -10px;
+      background-color: black;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .profile-icon:hover #profile-hover-text {
+      display: block;
+    }
+
+    #logout-dropdown {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      background: black;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .cart-icon {
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cart-icon span {
+      display: none;
+      position: absolute;
+      bottom: 35px;
+      left: -50px;
+      background-color: black;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .cart-icon:hover span {
+      display: block;
+    }
+
+    .hero {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      background: linear-gradient(to right, red, cyan);
+      padding: 20px 40px;
+      border-radius: 10px;
+      color: whitesmoke;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .about-us, .team-section {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 20px;
+      margin: 20px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-us h2, .team-section h2 {
+      color: cyan;
+      font-size: 36px;
+    }
+
+    .about-us p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.8;
+    }
+
+    .team {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      width: 250px;
+      transition: transform 0.3s ease;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+
+    .team-member i {
+      font-size: 80px;
+      color: white;
+    }
+
+    .team-member h3 {
+      margin: 10px 0 5px;
+      color: red;
+    }
+
+    .team-member p {
+      color: white;
+      font-size: 16px;
+    }
+
+    footer {
+      background: black;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>MoviesX</header>
+<nav class="nav">
+  <div class="nav-left">
+    <div class="profile-icon" id="profile-icon" style="display: none;">
+      <i class="fa fa-user-circle"></i>
+      <span id="profile-hover-text">Username</span>
+      <div id="logout-dropdown">Logout</div>
+    </div>
+  </div>
+
+  <div class="nav-center" id="nav-center">
+    <a href="login.html" id="login-link">Login</a>
+    <a href="register.html" id="register-link">Register</a>
+    <a href="products.html" id="products-link">Products</a>
+  </div>
+
+  <div class="nav-right">
+    <a href="cartpg.html" class="cart-icon">
+      <i class="fa fa-shopping-cart"></i>
+      <span id="cart-hover-text">View Cart</span>
+    </a>
+  </div>
+</nav>
+
+
+  <div class="hero">
+    <h1 id="hero-text">Discover Movies Rediscover Yourself</h1>
+  </div>
+
+  <section class="about-us">
+    <h2>About Us</h2>
+    <p>
+      <strong>MoviesX</strong> is your one-stop platform to explore and shop exclusive movie merchandise.
+      From iconic collectibles to stylish apparel, we bring fans closer to their favorite films.
+      Designed by passionate developers, MoviesX combines sleek design, secure shopping, and a smooth user experience.
+    </p>
+  </section>
+
+  <section class="team-section">
+    <h2>Our Team</h2>
+    <div class="team">
+      <div class="team-member">
+        <i class="fa fa-female"></i>
+        <h3>Shreeya Salunkhe</h3>
+        <p>UI/UX Designer</p>
+      </div>
+      <div class="team-member">
+        <i class="fa fa-female"></i>
+        <h3>Sanskriti Gupta</h3>
+        <p>Frontend Developer</p>
+      </div>
+      <div class="team-member">
+        <i class="fa fa-male"></i>
+        <h3>Suraj Hippargi</h3>
+        <p>Backend Developer</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MoviesX. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function updateCartHover() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-hover-text').textContent = `View Cart (${cart.length})`;
+    }
+    window.onload = updateCartHover;
+  </script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const userData = JSON.parse(localStorage.getItem("moviesXUser"));
+      const heroText = document.getElementById("hero-text");
+
+      if (userData && userData.username) {
+        heroText.textContent = `Hello, ${userData.username}!`;
+        setTimeout(() => {
+          heroText.textContent = "Discover Movies Rediscover Yourself";
+        }, 3000);
+      }
+    });
+  </script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const userData = JSON.parse(localStorage.getItem("moviesXUser"));
+      const registerLink = document.getElementById("register-link");
+      const loginLink = document.getElementById("login-link");
+      const profileIcon = document.getElementById("profile-icon");
+      const profileHoverText = document.getElementById("profile-hover-text");
+      const logoutDropdown = document.getElementById("logout-dropdown");
+
+      if (userData && userData.username) {
+        registerLink.style.display = "none";
+        loginLink.style.display = "none";
+        profileIcon.style.display = "block";
+        profileHoverText.textContent = userData.username;
+
+        logoutDropdown.addEventListener("click", () => {
+          localStorage.removeItem("moviesXUser");
+          window.location.reload();
+        });
+      } else {
+        profileIcon.style.display = "none";
+        registerLink.style.display = "inline-block";
+        loginLink.style.display = "inline-block";
+      }
+    });
+    
+  </script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const userData = JSON.parse(localStorage.getItem("moviesXUser"));
+      const registerLink = document.getElementById("register-link");
+      const loginLink = document.getElementById("login-link");
+      const profileIcon = document.getElementById("profile-icon");
+      const profileHoverText = document.getElementById("profile-hover-text");
+      const logoutDropdown = document.getElementById("logout-dropdown");
+  
+      if (userData && userData.username) {
+        registerLink.style.display = "none";
+        loginLink.style.display = "none";
+        profileIcon.style.display = "block";
+        profileHoverText.textContent = userData.username;
+  
+        // Toggle dropdown on profile icon click
+        profileIcon.addEventListener("click", (e) => {
+          e.stopPropagation();
+          logoutDropdown.style.display = logoutDropdown.style.display === "block" ? "none" : "block";
+        });
+  
+        // Click outside hides the dropdown
+        document.addEventListener("click", (e) => {
+          if (!profileIcon.contains(e.target)) {
+            logoutDropdown.style.display = "none";
+          }
+        });
+  
+        // Logout action
+        logoutDropdown.addEventListener("click", () => {
+          localStorage.removeItem("moviesXUser");
+          window.location.reload();
+        });
+  
+      } else {
+        profileIcon.style.display = "none";
+        registerLink.style.display = "inline-block";
+        loginLink.style.display = "inline-block";
+      }
+    });
+  </script>
+  
+</body>
+</html>

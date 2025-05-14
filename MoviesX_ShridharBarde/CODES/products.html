@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoviesX - Products</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, cyan,red);
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e1e;
+      color: white;
+    }
+    header {
+      background: linear-gradient(to right, cyan,red);
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      padding: 20px;
+      font-size: 44px;
+      font-weight: bold;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      background: black;
+      padding: 15px;
+      position: relative;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+    .nav a:hover {
+      background: red;
+      border-radius: 5px;
+    }
+    .cart-icon {
+      position: absolute;
+      right: 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+    .cart-icon span {
+      display: none;
+      position: absolute;
+      bottom: 35px;
+      left: -70px;
+      background-color: black;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .cart-icon:hover span {
+      display: block;
+    }
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+    .product-card {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: cyan;
+    }
+    .product-card h3 {
+  font-size: 24px;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: cyan;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.product-card h3:hover {
+  color: cyan;
+  transform: scale(1.05);
+}
+
+.product-card h3:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.product-card h3 {
+  position: relative;
+  display: inline-block;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: cyan;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.product-card h3:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.product-card h3:hover {
+  color: cyan;
+  text-shadow: 0 0 10px cyan, 0 0 20px red;
+}
+.product-card {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 255, 255, 0.4), 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+  </style>
+</head>
+<body>
+  <header>MoviesX - Products</header>
+  <nav class="nav">
+    <a href="Movie.html">Home</a>
+    <a href="cartpg.html" class="cart-icon" onclick="window.location.href='cartpg.html';">
+      <i class="fa fa-shopping-cart"></i>
+      <span id="cart-hover-text">View Cart (0)</span>
+    </a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+  </nav>
+
+  <div class="products-container" id="products-container"></div>
+
+  <script>
+    const movies = [
+      { name: 'Daredevil', genre: 'Action', price: '299', img: 'IMAGE/Daredevil.png' },
+      { name: 'Interstellar', genre: 'Sci-Fi', price: '450', img: 'IMAGE/Interstellar.png' },
+      { name: 'Oppenheimer', genre: 'Biopic', price: '300', img: 'IMAGE/image.png' },
+      { name: 'Stree 2', genre: 'Horror Comedy', price: '120', img: 'IMAGE/Stree2.png' },
+      { name: 'Avengers: Endgame', genre: 'Action', price: '350', img: 'IMAGE/Avengers.png' },
+      { name: 'Inception', genre: 'Sci-Fi', price: '400', img: 'IMAGE/Inception.png' }
+    ];
+
+    const container = document.getElementById('products-container');
+
+    movies.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${movie.img}" alt="${movie.name}" />
+        <h3>${movie.name}</h3>
+        <p>Genre: ${movie.genre}</p>
+        <p>Price: ₹${movie.price}</p>
+        <button onclick="addToCart('${movie.name}', '${movie.genre}', '${movie.price}')">Add to Cart</button>
+      `;
+      container.appendChild(card);
+    });
+
+    function addToCart(name, genre, price) {
+      const movie = { name, genre, price };
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(movie);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} has been added to your cart!`);
+      updateCartHover();
+    }
+
+    function updateCartHover() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartCount = cart.length;
+      document.getElementById('cart-hover-text').textContent = `View Cart (${cartCount})`;
+    }
+    window.onload = updateCartHover;
+  </script>
+</body>
+</html>

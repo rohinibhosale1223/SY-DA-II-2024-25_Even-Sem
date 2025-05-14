@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoviesX - Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif; 
+            background: linear-gradient(to right, cyan,red);
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: white;
+        }
+        header {
+            background: linear-gradient(to right, cyan,red);
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            padding: 20px;
+            font-size: 44px;
+            font-weight: bold;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            background: black;
+            padding: 15px;
+            position: relative;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .nav a:hover {
+            background: red;
+            border-radius: 5px;
+        }
+        .cart-icon {
+            position: absolute;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+        .cart-icon span {
+            display: none;
+            position: absolute;
+            top: -30px;
+            right: 0;
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .cart-icon:hover span {
+            display: block;
+        }
+        .cart-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #total-price {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        button {
+            background: red;
+            font-family: 'Orbitron', sans-serif; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: cyan;
+        }
+    </style>
+</head>
+<body>
+    <header>MoviesX - Cart</header>
+    <nav class="nav">
+        <a href="Movie.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <div class="cart-icon" id="cart-icon">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-hover">View Cart</span>
+        </div>
+    </nav>
+
+    <div class="cart-container" id="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-info"></div>
+        <div id="total-price"></div>
+        <button onclick="clearCart()">Clear Cart</button>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartInfo = document.getElementById('cart-info');
+            const totalPriceElement = document.getElementById('total-price');
+            const cartHover = document.getElementById('cart-hover');
+
+            cartHover.textContent = cart.length > 0 ? `View Cart (${cart.length} items)` : 'View Cart';
+
+            if (cart.length === 0) {
+                cartInfo.innerHTML = '<p>Your cart is empty.</p>';
+                totalPriceElement.textContent = '';
+                return;
+            }
+
+            let totalPrice = 0;
+            cartInfo.innerHTML = '';
+
+            cart.forEach(movie => {
+                cartInfo.innerHTML += `<p>Movie: ${movie.name}</p><p>Genre: ${movie.genre}</p><p>Price: ₹${movie.price}</p><hr>`;
+                totalPrice += parseInt(movie.price);
+            });
+
+            totalPriceElement.textContent = `Total Price: ₹${totalPrice}`;
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            alert('Cart has been cleared!');
+            loadCart();
+        }
+
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add items to proceed with checkout.');
+                return;
+            }
+            alert('Checkout successful! Thank you for your purchase.');
+            clearCart();
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>
