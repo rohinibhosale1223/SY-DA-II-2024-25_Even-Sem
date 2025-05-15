@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu - Gourmet Delight</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      z-index: 1;
+      animation: fadeIn 2s ease-in-out;
+      margin: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .home-button a {
+      background: white;
+      color: black;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .cart-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .cart-icon {
+      background: white;
+      padding: 10px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .cart-icon i {
+      color: black;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: black;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+
+    .menu-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .menu-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item h3 {
+      color: #ff6f61;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .menu-item p {
+      padding: 0 1rem;
+      font-size: 0.95rem;
+    }
+
+    .add-to-cart {
+      background: grey;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      margin: 1rem auto;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background: #333;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Header -->
+  <header>
+    <h1>Our Menu</h1>
+  </header>
+
+  <!-- Home and Cart Buttons -->
+  <div class="home-button">
+    <a href="index.html" aria-label="Go to Home"><i class="fas fa-home"></i></a>
+  </div>
+
+  <div class="cart-container">
+    <a href="cart.html" aria-label="View Cart">
+      <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Menu Section -->
+  <section class="menu-section">
+    <div class="menu-grid">
+
+      <!-- Indian Dishes -->
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\butter-chicken-.jpg"alt="Butter Chicken">
+        <h3>Butter Chicken</h3>
+        <p>Creamy tomato-based curry with tender chicken and spices.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\biryani.jpg"alt="Hyderabadi Biryani">
+        <h3>Hyderabadi Biryani</h3>
+        <p>Fragrant basmati rice layered with marinated meat and herbs.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\naan.jpg" alt="Garlic Naan">
+        <h3>Garlic Naan</h3>
+        <p>Soft, fluffy Indian bread infused with garlic and baked in a tandoor.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\pannertika.jpg"alt="Paneer Tikka">
+        <h3>Paneer Tikka</h3>
+        <p>Grilled cubes of paneer marinated in yogurt and spices.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <!-- International -->
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Classic Margherita Pizza.jpg"alt="Pizza">
+        <h3>Classic Margherita Pizza</h3>
+        <p>Fresh basil, mozzarella, and tangy tomato sauce on a crispy base.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Creamy Alfredo Pasta.jpg" alt="Pasta">
+        <h3>Creamy Alfredo Pasta</h3>
+        <p>Rich, creamy sauce tossed with fettuccine and parmesan cheese.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Assorted Sushi Platter.jpg"alt="Sushi">
+        <h3>Assorted Sushi Platter</h3>
+        <p>A delightful mix of nigiri, sashimi, and rolls, made fresh.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Spicy Chicken Tacos.jpg" alt="Tacos">
+        <h3>Spicy Chicken Tacos</h3>
+        <p>Soft tortillas filled with spicy grilled chicken and toppings.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Garden Fresh Salad.jpg" alt="Salad">
+        <h3>Garden Fresh Salad</h3>
+        <p>A refreshing blend of greens, cherry tomatoes, and vinaigrette.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <!-- Dessert & Juice -->
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Chocolate Lava Cake.jpg" alt="Chocolate Lava Cake">
+        <h3>Chocolate Lava Cake</h3>
+        <p>Warm, gooey chocolate center served with vanilla ice cream.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Gulab Jamun.jpg"alt="Gulab Jamun">
+        <h3>Gulab Jamun</h3>
+        <p>Soft fried dumplings soaked in rose-flavored sugar syrup.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="C:\Users\hippa\OneDrive\Desktop\hotelmenusystem\Fresh Orange Juice.jpg" alt="Fresh Orange Juice">
+        <h3>Fresh Orange Juice</h3>
+        <p>Cold-pressed orange juice served fresh without preservatives.</p>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Gourmet Delight. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .cart-container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+        }
+        .remove-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .remove-btn:hover {
+            background: #cc0000;
+        }
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .checkout-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .checkout-btn:hover {
+            background: #218838;
+        }
+        .bill {
+            margin-top: 25px;
+            text-align: left;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .bill-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            padding: 5px 0;
+        }
+        .product-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .product-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    
+    <div class="cart-container">
+        <div id="cart-items"></div>
+        <p class="total">Total: ₹<span id="total-price">0</span></p>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        <div class="bill" id="bill"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartContainer = document.getElementById("cart-items");
+            let totalPrice = 0;
+
+            function updateCart() {
+                cartContainer.innerHTML = "";
+                totalPrice = 0;
+
+                if (cart.length === 0) {
+                    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                    document.getElementById("bill").innerHTML = "";
+                } else {
+                    cart.forEach((item, index) => {
+                        if (!item.quantity) item.quantity = 1;
+                        totalPrice += item.price * item.quantity;
+
+                        let cartItem = document.createElement("div");
+                        cartItem.classList.add("cart-item");
+                        cartItem.innerHTML = `
+                            <span>
+                                <a href="product.html?id=${item.id}" class="product-link">${item.name}</a> - ₹${item.price} x ${item.quantity}
+                            </span>
+                            <button class="remove-btn" aria-label="Remove ${item.name}" onclick="removeItem(${index})">Remove</button>
+                        `;
+                        cartContainer.appendChild(cartItem);
+                    });
+                    generateBill();
+                }
+
+                document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            function generateBill() {
+                let billContainer = document.getElementById("bill");
+                billContainer.innerHTML = "<h3>Bill Details:</h3>";
+                cart.forEach(item => {
+                    let billItem = document.createElement("div");
+                    billItem.classList.add("bill-item");
+                    billItem.innerHTML = `<span><a href="product.html?id=${item.id}" class="product-link">${item.name}</a> x ${item.quantity}</span><span>₹${(item.price * item.quantity).toFixed(2)}</span>`;
+                    billContainer.appendChild(billItem);
+                });
+                let totalBill = document.createElement("div");
+                totalBill.classList.add("bill-item");
+                totalBill.innerHTML = `<strong>Total</strong><strong>₹${totalPrice.toFixed(2)}</strong>`;
+                billContainer.appendChild(totalBill);
+            }
+
+            window.removeItem = function(index) {
+                cart.splice(index, 1);
+                updateCart();
+            };
+
+            window.checkout = function () {
+                alert("Checkout successful! Your order has been placed.");
+                localStorage.removeItem("cart");
+                cart = [];
+                updateCart();
+            };
+
+            updateCart();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Gourmet Delight</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Hero Header */
+        header {
+            background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            z-index: 1;
+            animation: fadeIn 2s ease-in-out;
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .home-btn {
+            display: inline-block;
+            margin: 2rem auto 0;
+            background: #ff6f61;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: #e85a4f;
+        }
+
+        .about-section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff6f61;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <!-- Home Button -->
+    <div style="text-align: center;">
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
+
+    <!-- About Content -->
+    <section class="about-section">
+        <h2>Welcome to Gourmet Delight</h2>
+        <p>
+            Gourmet Delight is more than just a restaurant – it's a place where flavors come alive and memories are made. We began our journey with a dream to create a culinary haven that blends passion, quality, and warmth into every dish we serve.
+            <br><br>
+            Our story started with a love for food and an ambition to craft a space where guests could experience the joy of authentic, heartfelt cooking. Each plate that leaves our kitchen is the result of creativity, dedication, and a respect for tradition.
+            <br><br>
+            At Gourmet Delight, we celebrate the beauty of diverse cuisines. Our chefs draw inspiration from global flavors while keeping the soul of home-style cooking intact. Whether it's a vibrant pasta, a sizzling curry, or a crisp fresh salad — we believe every bite should delight.
+            <br><br>
+            We prioritize freshness above all else. Our ingredients are hand-picked daily to ensure quality, taste, and health. From farm to table, our mission is to support local growers and bring only the best to your plate.
+            <br><br>
+            Hospitality is at the heart of everything we do. We want our guests to feel like family — greeted with a warm smile, served with care, and remembered long after they leave. Our staff is trained not just to serve food, but to create experiences.
+            <br><br>
+            Over the years, we’ve hosted countless celebrations — birthdays, anniversaries, first dates, and business meetings. It brings us immense joy to know that our space plays a role in your cherished moments.
+            <br><br>
+            Innovation fuels our kitchen. While we respect tradition, we love to experiment. We frequently introduce seasonal specials, fusion dishes, and chef’s creations to keep your dining experience exciting and new.
+            <br><br>
+            Sustainability is something we care deeply about. We’ve taken steps to reduce waste, embrace eco-friendly packaging, and source responsibly. We believe every small action contributes to a better tomorrow.
+            <br><br>
+            Our interiors reflect the soul of our food — elegant, cozy, and inviting. Whether you're having an intimate dinner or a lively group lunch, our ambiance is designed to complement your meal perfectly.
+            <br><br>
+            We are proud of the community we’ve built — our loyal customers, supportive neighbors, and passionate team members. Gourmet Delight is a collective dream, made possible because of people like you.
+            <br><br>
+            Looking ahead, our goal is simple: to keep delighting you. To serve dishes that surprise your taste buds, comfort your heart, and make you look forward to your next visit.
+            <br><br>
+            We thank you for your continued support and for being part of our story. Here's to many more meals, memories, and moments shared together at Gourmet Delight.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Gourmet Delight. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
