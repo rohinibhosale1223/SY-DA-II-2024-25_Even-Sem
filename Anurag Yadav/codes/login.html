@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Eventify</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9f9;
+      margin: 0;
+      color: #1c2833;
+    }
+
+    .container {
+      max-width: 450px;
+      margin: 4rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2e86c1;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      border-color: #2e86c1;
+      outline: none;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    button {
+      background-color: #f4d03f;
+      color: #1c2833;
+      font-weight: bold;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #f1c40f;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: #566573;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .note a {
+      color: #2e86c1;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Login</h2>
+    <form onsubmit="return validateLogin()">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <span class="error" id="loginError"></span>
+      <button type="submit">Login</button>
+    </form>
+    <p class="note">Don't have an account? <a href="register.html">Register here</a>.</p>
+  </div>
+
+  <script>
+    function validateLogin() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("loginError");
+
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (!storedUser || email !== storedUser.email || password !== storedUser.password) {
+        error.textContent = "Invalid email or password.";
+        return false;
+      }
+
+      // ✅ Set login status and redirect
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("currentUser", storedUser.email);
+
+      alert("Login successful!");
+      window.location.href = "index.html";
+      return false;
+    }
+  </script>
+
+</body>
+</html>
+

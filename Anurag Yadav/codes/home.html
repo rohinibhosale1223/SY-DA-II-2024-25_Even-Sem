@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventify - Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9f9;
+      color: #1c2833;
+    }
+
+    header {
+      background: #2e86c1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: url('https://images.pexels.com/photos/1313814/pexels-photo-1313814.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .btn {
+      background: #f4d03f;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #1c2833;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2e86c1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .event-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .event-card h3 {
+      margin-top: 1rem;
+    }
+
+    .event-card p {
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #1c2833;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+
+  <header>
+    <div class="logo">Eventify</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+       <li><a href="booking.html">Cart</a></li>
+    </ul>
+  </header>
+
+  
+  <section class="hero">
+    <h1>Welcome to Eventify</h1>
+    <p>Discover and register for exciting events around you!</p>
+    <a href="events.html" class="btn">Explore Events</a>
+  </section>
+
+
+  <section class="section">
+    <h2>Featured Events</h2>
+    <div class="grid">
+      <div class="event-card">
+        <img src="https://www.cvent.com/sites/default/files/image/2023-11/Event_Technology_Trends-Cvent_CONNECT_2023.jpg" alt="Tech Event" />
+        <h3>TechFest 2025</h3>
+        <p>Date: June 22, 2025</p>
+        <button class="btn" onclick="addToCart('tech')">Register</button>
+      </div>
+      <div class="event-card">
+        <img src="https://s3.ap-south-1.amazonaws.com/studyinfocentre.com/media/public/Content/top-10-happening-engineering-college-fests-in-india/fest.jpg" alt="Cultural Night" />
+        <h3>Cultural Night</h3>
+        <p>Date: July 15, 2025</p>
+        <button class="btn" onclick="addToCart('culture')">Register</button>
+      </div>
+      <div class="event-card">
+        <img src="https://img.freepik.com/premium-photo/youth-engineering-students-working-electronics-aig41_31965-316801.jpg" alt="Workshop" />
+        <h3>AI Workshop</h3>
+        <p>Date: Aug 10, 2025</p>
+         <button class="btn" onclick="addToCart('ai')">Register</button>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="section">
+    <h2>Event Categories</h2>
+    <div class="grid">
+      <div class="event-card">
+        <h3>Technical Events</h3>
+        <p>Hackathons, Coding Challenges, Tech Talks</p>
+      </div>
+      <div class="event-card">
+        <h3>Cultural Events</h3>
+        <p>Music, Dance, Fashion Shows, Theatre</p>
+      </div>
+      <div class="event-card">
+        <h3>Workshops</h3>
+        <p>Hands-on Training Sessions, Skill Learning</p>
+      </div>
+      <div class="event-card">
+        <h3>Webinars</h3>
+        <p>Expert Talks, Online Learning & Networking</p>
+      </div>
+      <div class="event-card">
+        <h3>Seminars</h3>
+        <p>Guest Lectures, Industry Panels, Education</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer>
+    <p>&copy; 2025 Eventify. All rights reserved.</p>
+  </footer>
+<script>
+    function addToCart(eventId) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || {
+        tech: 0,
+        culture: 0,
+        ai: 0
+      };
+      cart[eventId]++;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Event added to your bookings!");
+    }
+    window.onload = () => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      const user = localStorage.getItem("currentUser");
+      if (isLoggedIn === "true" && user) {
+        const header = document.querySelector(".logo");
+        header.textContent = `Welcome, ${user.split('@')[0]}`;
+      }
+    };
+  </script>
+</body>
+</html>

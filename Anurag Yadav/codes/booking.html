@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9f9;
+      margin: 0;
+      color: #1c2833;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2e86c1;
+      margin-bottom: 2rem;
+    }
+
+    .booking-item {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .booking-info {
+      flex: 1;
+    }
+
+    .booking-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .qty-btn {
+      background: #2e86c1;
+      color: white;
+      font-size: 1.2rem;
+      width: 35px;
+      height: 35px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .remove-btn {
+      background: crimson;
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .qty {
+      font-size: 1.1rem;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #1c2833;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <h2>My Booked Events</h2>
+
+    <div class="booking-item" id="item-tech">
+      <div class="booking-info">
+        <h4>TechFest 2025</h4>
+        <p class="price">₹750</p>
+      </div>
+      <div class="booking-controls">
+        <button class="qty-btn" onclick="updateQty('tech', -1)">−</button>
+        <div class="qty" id="qty-tech">0</div>
+        <button class="qty-btn" onclick="updateQty('tech', 1)">+</button>
+        <button class="remove-btn" onclick="removeItem('tech')">Remove</button>
+      </div>
+    </div>
+
+    <div class="booking-item" id="item-culture">
+      <div class="booking-info">
+        <h4>Cultural Night</h4>
+        <p class="price">₹600</p>
+      </div>
+      <div class="booking-controls">
+        <button class="qty-btn" onclick="updateQty('culture', -1)">−</button>
+        <div class="qty" id="qty-culture">0</div>
+        <button class="qty-btn" onclick="updateQty('culture', 1)">+</button>
+        <button class="remove-btn" onclick="removeItem('culture')">Remove</button>
+      </div>
+    </div>
+
+    <div class="booking-item" id="item-ai">
+      <div class="booking-info">
+        <h4>AI Workshop</h4>
+        <p class="price">₹500</p>
+      </div>
+      <div class="booking-controls">
+        <button class="qty-btn" onclick="updateQty('ai', -1)">−</button>
+        <div class="qty" id="qty-ai">0</div>
+        <button class="qty-btn" onclick="updateQty('ai', 1)">+</button>
+        <button class="remove-btn" onclick="removeItem('ai')">Remove</button>
+      </div>
+    </div>
+
+    <div class="total">Total Booking Amount: ₹<span id="total">0</span></div>
+  </section>
+
+  <script>
+    const prices = {
+      tech: 750,
+      culture: 600,
+      ai: 500
+    };
+
+    
+    let cart = JSON.parse(localStorage.getItem("cart")) || {
+      tech: 0,
+      culture: 0,
+      ai: 0
+    };
+
+  
+    function updateQty(eventId, delta) {
+      if (cart[eventId] + delta < 0) return;
+      cart[eventId] += delta;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      document.getElementById(`qty-${eventId}`).innerText = cart[eventId];
+      toggleItemVisibility(eventId);
+      updateTotal();
+    }
+
+    
+    function removeItem(eventId) {
+      cart[eventId] = 0;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      document.getElementById(`qty-${eventId}`).innerText = "0";
+      toggleItemVisibility(eventId);
+      updateTotal();
+    }
+
+    
+    function toggleItemVisibility(eventId) {
+      const block = document.getElementById(`item-${eventId}`);
+      if (cart[eventId] === 0) {
+        block.classList.add("hidden");
+      } else {
+        block.classList.remove("hidden");
+      }
+    }
+
+   
+    function updateTotal() {
+      let total = 0;
+      for (let id in cart) {
+        total += prices[id] * cart[id];
+      }
+      document.getElementById("total").innerText = total;
+    }
+
+    
+    window.onload = function () {
+      for (let id in cart) {
+        document.getElementById(`qty-${id}`).innerText = cart[id];
+        toggleItemVisibility(id);
+      }
+      updateTotal();
+    };
+  </script>
+
+</body>
+</html>
