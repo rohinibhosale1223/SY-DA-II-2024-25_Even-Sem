@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crossword Bookstore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+    }
+
+    .header {
+      background-color: #f4c842;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+    }
+
+    .navbar a:hover {
+      background-color: #f4c842;
+      color: black;
+    }
+
+    .cart {
+      color: white;
+      font-weight: bold;
+    }
+
+    .categories {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .category-list {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      background: #e0e0e0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .category:hover {
+      background-color: #f4c842;
+    }
+
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .book {
+      background: white;
+      padding: 15px;
+      width: 220px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .book img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .book p.description {
+      font-size: 14px;
+      color: #555;
+      margin: 10px 0;
+    }
+
+    .book button {
+      background: #f4c842;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .book button:hover {
+      background-color: #ffae00;
+    }
+
+    .footer {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Crossword Bookstore</div>
+
+  <div class="navbar">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="cart.html" class="cart">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </div>
+  </div>
+
+  <div class="categories">
+    <h2>Book Categories</h2>
+    <div class="category-list">
+      <div class="category">Fiction</div>
+      <div class="category">Non-Fiction</div>
+      <div class="category">Science</div>
+      <div class="category">Technology</div>
+      <div class="category">Children</div>
+    </div>
+  </div>
+
+  <div class="book-container">
+    <!-- Book 1 -->
+    <div class="book">
+      <img src="atomic_habits.jpg" alt="Atomic Habits">
+      <h3>Atomic Habits</h3>
+      <p>₹499</p>
+      <p class="description">Transform your habits and life with James Clear's practical strategies for building better routines.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="book">
+      <img src="bhagavad_gita.jpg" alt="Bhagavad Gita">
+      <h3>Bhagavad Gita</h3>
+      <p>₹299</p>
+      <p class="description">A timeless spiritual dialogue between Krishna and Arjuna on life, duty, and righteousness.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 3 -->
+    <div class="book">
+      <img src="harry_potter.jpg" alt="Harry Potter">
+      <h3>Harry Potter</h3>
+      <p>₹599</p>
+      <p class="description">J.K. Rowling's magical series that chronicles the life of the young wizard, Harry Potter.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 4 -->
+    <div class="book">
+      <img src="it_ends_with_us.jpg" alt="It Ends With Us">
+      <h3>It Ends With Us</h3>
+      <p>₹399</p>
+      <p class="description">Colleen Hoover's powerful novel about love, heartbreak, and breaking the cycle of abuse.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 5 -->
+    <div class="book">
+      <img src="wings_of_fire.jpg" alt="Wings of Fire">
+      <h3>Wings of Fire</h3>
+      <p>₹350</p>
+      <p class="description">An inspiring autobiography of Dr. A.P.J. Abdul Kalam, India's missile man and former President.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 6 -->
+    <div class="book">
+      <img src="percy_jackson.jpg" alt="Percy Jackson">
+      <h3>Percy Jackson</h3>
+      <p>₹499</p>
+      <p class="description">Rick Riordan's thrilling series that blends Greek mythology with modern adventure.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 7 -->
+    <div class="book">
+      <img src="rich_dad_poor_dad.jpg" alt="Rich Dad Poor Dad">
+      <h3>Rich Dad Poor Dad</h3>
+      <p>₹399</p>
+      <p class="description">Robert Kiyosaki's bestselling book that challenges conventional ideas about money and wealth.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 8 -->
+    <div class="book">
+      <img src="sapiens.jpg" alt="Sapiens">
+      <h3>Sapiens</h3>
+      <p>₹549</p>
+      <p class="description">Yuval Noah Harari's sweeping narrative of the history of humankind from evolution to the present.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 9 -->
+    <div class="book">
+      <img src="the_alchemist.jpg" alt="The Alchemist">
+      <h3>The Alchemist</h3>
+      <p>₹299</p>
+      <p class="description">Paulo Coelho’s philosophical tale about a shepherd boy chasing his personal legend.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 10 -->
+    <div class="book">
+      <img src="lallan_sweets.jpg" alt="Lallan Sweets">
+      <h3>Lallan Sweets</h3>
+      <p>₹399</p>
+      <p class="description">An emotional journey of a young entrepreneur who revives his family’s sweet shop legacy.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 11 -->
+    <div class="book">
+      <img src="stationary_shop_tehran.jpg" alt="The Stationary Shop of Tehran">
+      <h3>The Stationary Shop of Tehran</h3>
+      <p>₹449</p>
+      <p class="description">A touching story of love and separation set in 1950s Iran by Marjan Kamali.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Book 12 -->
+    <div class="book">
+      <img src="fool_me_twice.jpg" alt="Fool Me Twice">
+      <h3>Fool Me Twice</h3>
+      <p>₹329</p>
+      <p class="description">An intriguing tale of deception, mystery, and second chances.</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+
+    <!-- Book 13 -->
+<div class="book">
+    <img src="2_states.jpg" alt="2 States">
+    <h3>2 States</h3>
+    <p>₹299</p>
+    <p class="description">Chetan Bhagat’s witty and relatable love story about a couple from two different Indian states.</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+  
+  <!-- Book 14 -->
+  <div class="book">
+    <img src="meluha.jpg" alt="The Immortals of Meluha">
+    <h3>The Immortals of Meluha</h3>
+    <p>₹350</p>
+    <p class="description">Amish Tripathi’s thrilling mythological fiction about Shiva’s journey to becoming a god.</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+  
+  <!-- Book 15 -->
+  <div class="book">
+    <img src="a_little_life.jpg" alt="A Little Life">
+    <h3>A Little Life</h3>
+    <p>₹649</p>
+    <p class="description">Hanya Yanagihara’s powerful and emotional novel about friendship, trauma, and survival.</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+  
+  
+
+  <div class="footer">&copy; 2024 Crossword Bookstore. All Rights Reserved.</div>
+
+  <script>
+    let cartCount = 0;
+    function addToCart() {
+      cartCount++;
+      document.getElementById("cart-count").innerText = cartCount;
+      alert("Book added to cart!");
+    }
+  </script>
+
+</body>
+</html>

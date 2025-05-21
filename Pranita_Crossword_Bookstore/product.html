@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Page - Crossword Bookstore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #f4c842;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo {
+            width: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #f4c842;
+            color: black;
+        }
+
+        .cart {
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Product Container */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .product img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product p {
+            font-size: 14px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .product button {
+            background: #f4c842;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product button:hover {
+            background-color: #ffae00;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            background: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Copyright Nav Bar */
+        .copyright-nav {
+            background-color: #f4c842;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .copyright-nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .copyright-nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="logo.png" alt="Crossword Logo" class="logo"> Crossword Bookstore
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="cart.html" class="cart">🛒 Cart (<span id="cart-count">0</span>)</a>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-container" id="product-list">
+        <!-- Book 1 -->
+        <div class="product">
+            <img src="bhagavad_gita.jpg" alt="Bhagavad Gita">
+            <h3>Bhagavad Gita</h3>
+            <p>A sacred scripture offering guidance on life, duty, and spirituality.</p>
+            <p>₹299</p>
+            <button onclick="addToCart('Bhagavad Gita', 299)">Add to Cart</button>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="product">
+            <img src="percy_jackson.jpg" alt="Percy Jackson">
+            <h3>Percy Jackson</h3>
+            <p>An adventurous series that follows Percy, a demigod, through mythical challenges.</p>
+            <p>₹499</p>
+            <button onclick="addToCart('Percy Jackson', 499)">Add to Cart</button>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="product">
+            <img src="it_ends_with_us.jpg" alt="It Ends With Us">
+            <h3>It Ends With Us</h3>
+            <p>A heart-wrenching tale of love, strength, and sacrifice.</p>
+            <p>₹399</p>
+            <button onclick="addToCart('It Ends With Us', 399)">Add to Cart</button>
+        </div>
+
+        <!-- Book 4 -->
+        <div class="product">
+            <img src="harry_potter.jpg" alt="Harry Potter">
+            <h3>Harry Potter</h3>
+            <p>A magical journey that follows the life of a young wizard fighting evil.</p>
+            <p>₹599</p>
+            <button onclick="addToCart('Harry Potter', 599)">Add to Cart</button>
+        </div>
+
+        <!-- Book 5 -->
+        <div class="product">
+            <img src="atomic_habits.jpg" alt="Atomic Habits">
+            <h3>Atomic Habits</h3>
+            <p>An insightful guide on building positive habits and breaking bad ones.</p>
+            <p>₹450</p>
+            <button onclick="addToCart('Atomic Habits', 450)">Add to Cart</button>
+        </div>
+
+        <!-- Book 6 -->
+        <div class="product">
+            <img src="rich_dad_poor_dad.jpg" alt="Rich Dad Poor Dad">
+            <h3>Rich Dad Poor Dad</h3>
+            <p>A financial classic teaching the secrets of wealth creation.</p>
+            <p>₹350</p>
+            <button onclick="addToCart('Rich Dad Poor Dad', 350)">Add to Cart</button>
+        </div>
+
+        <!-- Book 7 -->
+        <div class="product">
+            <img src="the_alchemist.jpg" alt="The Alchemist">
+            <h3>The Alchemist</h3>
+            <p>A philosophical tale about pursuing one's dreams and destiny.</p>
+            <p>₹299</p>
+            <button onclick="addToCart('The Alchemist', 299)">Add to Cart</button>
+        </div>
+
+        <!-- Book 8 -->
+        <div class="product">
+            <img src="sapiens.jpg" alt="Sapiens">
+            <h3>Sapiens</h3>
+            <p>A gripping journey through the history of humankind.</p>
+            <p>₹599</p>
+            <button onclick="addToCart('Sapiens', 599)">Add to Cart</button>
+        </div>
+
+        <!-- Book 9 -->
+        <div class="product">
+            <img src="wings_of_fire.jpg" alt="Wings of Fire">
+            <h3>Wings of Fire</h3>
+            <p>An inspiring autobiography of Dr. A.P.J. Abdul Kalam.</p>
+            <p>₹320</p>
+            <button onclick="addToCart('Wings of Fire', 320)">Add to Cart</button>
+        </div>
+
+        <!-- Book 10 (The Subtle Art of Not Giving a F***) -->
+        <div class="product">
+            <img src="subtle_art.jpg" alt="The Subtle Art of Not Giving a F***">
+            <h3>The Subtle Art of Not Giving a F***</h3>
+            <p>A counterintuitive guide to living a good life by embracing honesty and resilience.</p>
+            <p>₹399</p>
+            <button onclick="addToCart('The Subtle Art of Not Giving a F***', 399)">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Crossword Bookstore. All Rights Reserved.
+    </div>
+
+    <!-- Copyright Navigation -->
+    <div class="copyright-nav">
+        <a href="privacy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms of Use</a> |
+        <a href="faq.html">FAQ</a>
+    </div>
+
+    <script>
+        // JavaScript for Cart Functionality
+        let cartCount = 0;
+        let cartItems = [];
+
+        function addToCart(name, price) {
+            cartCount++;
+            document.getElementById("cart-count").innerText = cartCount;
+
+            // Add item to local storage
+            let item = { name: name, price: price, quantity: 1 };
+            let existingItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingItem = existingItems.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                existingItems.push(item);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(existingItems));
+            alert(`${name} added to cart!`);
+        }
+    </script>
+
+</body>
+
+</html>

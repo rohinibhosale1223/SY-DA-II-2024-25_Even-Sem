@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Crossword Bookstore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .header {
+      background-color: #f4c842;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      width: 100%;
+    }
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      width: 100%;
+    }
+    .navbar a, .navbar span {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+    }
+    .navbar a:hover {
+      background-color: #f4c842;
+      color: black;
+    }
+    .login-container {
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .login-btn {
+      background: #f4c842;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .login-btn:hover {
+      background: #ffae00;
+    }
+    .register-link {
+      margin-top: 15px;
+      display: block;
+    }
+    .footer {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">Crossword Bookstore</div>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <a href="login.html" id="login-link">Login</a>
+      <a href="register.html" id="register-link">Register</a>
+      <span id="welcome-user"></span>
+      <a href="#" id="logout-link" style="display:none;">Logout</a>
+      <a href="cart.html" class="cart">🛒 Cart</a>
+    </div>
+  </div>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <h2>Login to Crossword</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <a href="register.html" class="register-link">Don't have an account? Register here</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">&copy; 2024 Crossword Bookstore. All Rights Reserved.</div>
+
+  <!-- Script -->
+  <script>
+    function updateNavbar() {
+      const user = JSON.parse(localStorage.getItem("userDetails"));
+
+      if (user && user.username) {
+        document.getElementById("login-link").style.display = "none";
+        document.getElementById("register-link").style.display = "none";
+        document.getElementById("welcome-user").textContent = `Welcome, ${user.username}`;
+        document.getElementById("logout-link").style.display = "inline";
+      }
+    }
+
+    // Logout function
+    document.getElementById("logout-link").addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("userDetails");
+      location.reload();
+    });
+
+    // Form submission
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const userFound = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (userFound) {
+        localStorage.setItem("userDetails", JSON.stringify(userFound));
+        alert("Login successful!");
+        location.reload();
+      } else {
+        alert("Invalid email or password!");
+      }
+    });
+
+    // On page load
+    window.onload = updateNavbar;
+  </script>
+</body>
+</html>

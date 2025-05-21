@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Crossword Bookstore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      background-color: #f4c842;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .navbar {
+      background-color: #333;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+    }
+
+    .navbar a:hover {
+      background-color: #f4c842;
+      color: black;
+    }
+
+    .register-container {
+      background: white;
+      padding: 25px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      margin: 30px 0;
+    }
+
+    .register-container h2 {
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .input-group input.error {
+      border-color: red;
+    }
+
+    .input-group input.success {
+      border-color: green;
+    }
+
+    .input-group .warning {
+      color: red;
+      font-size: 12px;
+      margin-top: 3px;
+      display: block;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 38px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .register-btn {
+      background: #f4c842;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .register-btn:hover {
+      background: #ffae00;
+    }
+
+    .footer {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">Crossword Bookstore</header>
+
+  <nav class="navbar">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="cart.html" class="cart">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <main class="register-container">
+    <h2>Create an Account</h2>
+    <form id="register-form" onsubmit="return validateForm()">
+      <div class="input-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" aria-label="Full Name" required oninput="validateName()" />
+        <span class="warning" id="name-warning"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" aria-label="Username" required oninput="validateUsername()" />
+        <span class="warning" id="username-warning"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" aria-label="Email" required oninput="validateEmail()" />
+        <span class="warning" id="email-warning"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" aria-label="Phone Number" required oninput="validatePhone()" />
+        <span class="warning" id="phone-warning"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" aria-label="Date of Birth" />
+      </div>
+
+      <div class="input-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" aria-label="Gender">
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" aria-label="Address"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="genre">Preferred Genre:</label>
+        <select id="genre" name="genre" aria-label="Preferred Genre">
+          <option value="">Select</option>
+          <option>Fiction</option>
+          <option>Non-Fiction</option>
+          <option>Romance</option>
+          <option>Mystery</option>
+          <option>Fantasy</option>
+          <option>Sci-Fi</option>
+          <option>Biography</option>
+          <option>Self-Help</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" aria-label="Password" required oninput="validatePassword()" />
+        <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+        <span class="warning" id="password-warning"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" aria-label="Confirm Password" required oninput="validateConfirmPassword()" />
+        <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+        <span class="warning" id="confirm-password-warning"></span>
+      </div>
+
+      <div class="input-group">
+        <label><input type="checkbox" name="newsletter" /> Subscribe to newsletter</label>
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    &copy; 2024 Crossword Bookstore. All Rights Reserved.
+  </footer>
+
+  <script>
+    function validateField(input, testFn, warningId, message) {
+      const warning = document.getElementById(warningId);
+      if (testFn(input.value)) {
+        input.classList.add("success");
+        input.classList.remove("error");
+        warning.textContent = "";
+        return true;
+      } else {
+        input.classList.add("error");
+        input.classList.remove("success");
+        warning.textContent = message;
+        return false;
+      }
+    }
+
+    const validateName = () =>
+      validateField(document.getElementById("name"), val => /^[a-zA-Z\s]{3,}$/.test(val), "name-warning", "Enter at least 3 letters.");
+
+    const validateUsername = () =>
+      validateField(document.getElementById("username"), val => /^[a-zA-Z0-9]{4,12}$/.test(val), "username-warning", "4-12 alphanumeric characters.");
+
+    const validateEmail = () =>
+      validateField(document.getElementById("email"), val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), "email-warning", "Invalid email format.");
+
+    const validatePhone = () =>
+      validateField(document.getElementById("phone"), val => /^[0-9]{10}$/.test(val), "phone-warning", "Enter a valid 10-digit number.");
+
+    const validatePassword = () =>
+      validateField(document.getElementById("password"), val => /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/.test(val), "password-warning", "Min 6 chars, 1 number, 1 symbol.");
+
+    const validateConfirmPassword = () => {
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm-password");
+      return validateField(confirm, val => val === password && val.length > 0, "confirm-password-warning", "Passwords do not match.");
+    };
+
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      const toggle = input.nextElementSibling;
+      input.type = input.type === "password" ? "text" : "password";
+      toggle.textContent = input.type === "text" ? "🙈" : "👁️";
+    }
+
+    function validateForm() {
+      return [validateName(), validateUsername(), validateEmail(), validatePhone(), validatePassword(), validateConfirmPassword()].every(Boolean);
+    }
+  </script>
+</body>
+
+</html>

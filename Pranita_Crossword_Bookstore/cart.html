@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Crossword Bookstore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #f4c842;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar {
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #f4c842;
+            color: black;
+        }
+
+        .cart-container {
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .footer {
+            text-align: center;
+            background: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .checkout-btn {
+            background: #f4c842;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #ffae00;
+        }
+
+        .cart-count {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 8px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">Crossword Bookstore</div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="books.html">Books</a>
+        <a href="cart.html" class="cart">🛒 Cart <span id="cart-count" class="cart-count">0</span></a>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items"></tbody>
+        </table>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2024 Crossword Bookstore. All Rights Reserved.</div>
+
+    <script>
+        // Load Cart Items from Local Storage
+        function loadCartItems() {
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartTable = document.getElementById("cart-items");
+            cartTable.innerHTML = "";
+            let totalAmount = 0;
+
+            if (cartItems.length === 0) {
+                cartTable.innerHTML = "<tr><td colspan='5'>Your cart is empty!</td></tr>";
+                updateCartCount();
+                return;
+            }
+
+            cartItems.forEach((item, index) => {
+                let total = item.price * item.quantity;
+                totalAmount += total;
+
+                cartTable.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>₹${item.price}</td>
+                        <td>
+                            <button onclick="updateQuantity(${index}, -1)">-</button>
+                            ${item.quantity}
+                            <button onclick="updateQuantity(${index}, 1)">+</button>
+                        </td>
+                        <td>₹${total}</td>
+                        <td><button onclick="removeItem(${index})">Remove</button></td>
+                    </tr>
+                `;
+            });
+
+            cartTable.innerHTML += `
+                <tr>
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td colspan="2"><strong>₹${totalAmount}</strong></td>
+                </tr>
+            `;
+
+            updateCartCount(); // Update count after reload
+        }
+
+        // Update Cart Count
+        function updateCartCount() {
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cart-count").innerText = itemCount;
+        }
+
+        // Remove Item from Cart
+        function removeItem(index) {
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            cartItems.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            loadCartItems();
+        }
+
+        // Update Item Quantity
+        function updateQuantity(index, change) {
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cartItems[index].quantity + change > 0) {
+                cartItems[index].quantity += change;
+            } else {
+                cartItems.splice(index, 1);
+            }
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            loadCartItems();
+        }
+
+        // Checkout and Clear Cart
+        function checkout() {
+            if (confirm("Are you sure you want to proceed with the checkout?")) {
+                alert("Thank you for your purchase! 🎉");
+                localStorage.removeItem("cart");
+                loadCartItems();
+            }
+        }
+
+        // Load Cart Items on Page Load
+        window.onload = function () {
+            loadCartItems();
+        };
+    </script>
+
+</body>
+
+</html>
