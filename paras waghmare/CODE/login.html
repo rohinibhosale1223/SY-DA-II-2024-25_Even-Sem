@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Book Haven</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .login {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .login h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <h1>Book Haven</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html" class="active">Login</a>
+    </nav>
+  </header>
+
+  <section class="login">
+    <h2>Login to Your Account</h2>
+    <form id="login-form" novalidate>
+      <input type="email" id="email" placeholder="Email" />
+      <p class="error" id="emailError"></p>
+      <input type="password" id="password" placeholder="Password" />
+      <p class="error" id="passwordError"></p>
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Book Haven. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("login-form");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+
+    // Redirect if already logged in
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      window.location.href = "index.html"; // Change to your homepage
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Email validation
+      const emailVal = email.value.trim();
+      if (!emailVal) {
+        emailError.textContent = "Email is required.";
+        valid = false;
+      } else if (!/^\S+@\S+\.\S+$/.test(emailVal)) {
+        emailError.textContent = "Please enter a valid email address.";
+        valid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Password validation
+      const passVal = password.value.trim();
+      if (!passVal) {
+        passwordError.textContent = "Password is required.";
+        valid = false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      // Final login check
+      if (valid) {
+        // Save session info
+        localStorage.setItem("userEmail", emailVal);
+        localStorage.setItem("isLoggedIn", "true");
+
+        // Redirect to home or dashboard
+        alert("Login successful!");
+        window.location.href = "index.html"; // Change to your homepage
+      }
+    });
+  </script>
+
+</body>
+</html>
