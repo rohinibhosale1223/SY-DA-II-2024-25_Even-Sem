@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="payment">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment - BasketFull</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function handlePaymentSubmit(event) {
+      event.preventDefault();
+      const method = document.querySelector('input[name="payment-method"]:checked');
+      if (!method) {
+        alert('Please select a payment method.');
+        return;
+      }
+      if (method.value === 'upi') {
+        const upiId = document.getElementById('upi-id').value.trim();
+        if (!upiId) {
+          alert('Please enter your UPI ID.');
+          return;
+        }
+        alert(`UPI Payment initiated for ID: ${upiId}. Thank you!`);
+      } else {
+        alert('Cash on Delivery selected. Thank you for your order!');
+      }
+      // Redirect to home or order confirmation page here if needed
+      window.location.href = 'index.html';
+    }
+
+    function toggleUpiInput() {
+      const upiRadio = document.getElementById('payment-upi');
+      const upiInput = document.getElementById('upi-id');
+      upiInput.disabled = !upiRadio.checked;
+      if (!upiRadio.checked) upiInput.value = '';
+    }
+  </script>
+</head>
+<body class="payment">
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="images/logo.png" alt="BasketFull Logo" /></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Complete Your Payment</h1>
+    <form id="payment-form" onsubmit="handlePaymentSubmit(event)">
+      <div class="payment-methods">
+        <label>
+          <input type="radio" name="payment-method" id="payment-upi" value="upi" onclick="toggleUpiInput()" />
+          UPI Payment
+        </label>
+        <input type="text" id="upi-id" placeholder="Enter your UPI ID" disabled />
+
+        <label>
+          <input type="radio" name="payment-method" value="cod" onclick="toggleUpiInput()" />
+          Cash on Delivery (COD)
+        </label>
+      </div>
+      <input type="submit" value="Pay Now" />
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BasketFull Grocery. All rights reserved.</p>
+  </footer>
+</body>
+</html>

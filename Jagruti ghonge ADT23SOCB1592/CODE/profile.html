@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" class="profile">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile - BasketFull</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function loadProfile() {
+      const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+      if (!loggedInUser) {
+        alert('You must be logged in to view this page.');
+        window.location.href = 'login.html';
+        return;
+      }
+      document.getElementById('username').textContent = loggedInUser.username;
+      document.getElementById('email').textContent = loggedInUser.email;
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('loggedInUser');
+      alert('Logged out successfully.');
+      window.location.href = 'login.html';
+    }
+
+    window.onload = loadProfile;
+  </script>
+</head>
+<body class="profile">
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="images/logo.png" alt="BasketFull Logo" /></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Your Profile</h1>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <button onclick="handleLogout()">Logout</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BasketFull Grocery. All rights reserved.</p>
+  </footer>
+</body>
+</html>

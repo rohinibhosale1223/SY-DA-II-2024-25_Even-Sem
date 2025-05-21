@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products - BasketFull</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="main.js"></script>
+  <script defer src="products.js"></script>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="logo">
+      <img src="assets/logo.png" alt="BasketFull Logo" /> BasketFull
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart 🛒</a>
+    </nav>
+    <div class="icons">
+      <i id="profile-icon">👤</i>
+    </div>
+    <div class="profile-popup" id="profile-popup">
+      <p id="profile-username"></p>
+      <p id="profile-email"></p>
+      <button id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Browse Products</h1>
+      <input type="text" id="search-input" placeholder="Search products..." />
+    </div>
+  </section>
+
+  <section id="product-list" class="product-list">
+    <!-- Product cards will be rendered dynamically -->
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BasketFull. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
