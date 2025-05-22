@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Vegetables Portal - Products</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
+        header, footer { background-color: #4CAF50; color: white; padding: 1.5rem; text-align: center; }
+        nav { display: grid; grid-template-columns: repeat(6, auto); background-color: #006666; padding: 0.5rem; }
+        nav a { color: white; text-decoration: none; padding: 0.5rem 1rem; text-align: center; }
+        nav a:hover { background-color: #575757; }
+        nav + .container { margin-top: 2rem; }
+        .container { padding: 5rem; }
+        .cart-summary { background-color: #fff; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); cursor: pointer; }
+        .cart-summary h2 { margin: 0; color: #333; }
+        .cart-summary p { margin: 0.5rem 0; }
+        .cart-details { display: none; background-color: #f4f4f4; padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .product-item { background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s; }
+        .product-item:hover { transform: translateY(-5px); }
+        .product-item img { width: 100%; height: 200px; object-fit: cover; }
+        .product-item h3 { margin: 1rem 0; text-align: center; }
+        .product-item p { color: #555; padding: 0 1rem; }
+        .product-item .price { font-weight: bold; color: #575757; text-align: center; margin: 1rem 0; }
+        .product-item button { background-color: #575757; color: white; border: none; border-radius: 5px; padding: 0.5rem 1rem; margin: 1rem auto; display: block; cursor: pointer; }
+        .product-item button:hover { background-color: #007373; }
+    </style>
+</head>
+<body>
+    <header><h1>Organic Vegetables Portal</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="Product.html">Products</a>
+        <a href="About Us.html">About Us</a>
+        <a href="Login.html">Login</a>
+        <a href="Registration.html">Registration</a>
+    </nav>
+    
+    <!-- Cart Summary -->
+    <div class="container">
+        <div class="cart-summary" onclick="toggleCartDetails()">
+            <h2>Cart Summary</h2>
+            <p><strong>Items:</strong> <span id="cart-items">0</span></p>
+            <p><strong>Total Price:</strong> ₹<span id="cart-total">0</span></p>
+            <div class="cart-details" id="cart-details"></div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="product-grid">
+            <div class="product-item" data-name="POTATO" data-price="40">
+                <img src="images/POTATO.jpg" alt="POTATO">
+                <h3>POTATO</h3>
+                <p>"Potato is a versatile and widely consumed vegetable."</p>
+                <div class="price">₹40 per KG</div>
+                <button onclick="addToCart('POTATO', 40)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="TOMATO" data-price="30">
+                <img src="images/TOMATO.jpeg" alt="TOMATO">
+                <h3>TOMATO</h3>
+                <p>"Tomato is a juicy and nutritious red fruit."</p>
+                <div class="price">₹30 per KG</div>
+                <button onclick="addToCart('TOMATO', 30)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="ONION" data-price="30">
+                <img src="images/ONION.webp" alt="ONION">
+                <h3>ONION</h3>
+                <p>"Onion adds flavor and aroma to various dishes."</p>
+                <div class="price">₹30 per KG</div>
+                <button onclick="addToCart('ONION', 30)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="CARROT" data-price="25">
+                <img src="images/CARROT.jpg" alt="CARROT">
+                <h3>CARROT</h3>
+                <p>"Carrot is a crunchy and nutritious root vegetable."</p>
+                <div class="price">₹25 per KG</div>
+                <button onclick="addToCart('CARROT', 25)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="CUCUMBER" data-price="25">
+                <img src="images/CUCUMBER.webp" alt="CUCUMBER">
+                <h3>CUCUMBER</h3>
+                <p>"Cucumber is a refreshing and hydrating green vegetable."</p>
+                <div class="price">₹25 per KG</div>
+                <button onclick="addToCart('CUCUMBER', 25)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="LADY FINGER" data-price="30">
+                <img src="images/LADY.webp" alt="LADY FINGER">
+                <h3>LADY FINGER</h3>
+                <p>"Lady finger is a slim and nutritious vegetable."</p>
+                <div class="price">₹30 per KG</div>
+                <button onclick="addToCart('LADY FINGER', 30)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="GREEN CHILLI" data-price="50">
+                <img src="images/GREEN CHILLI.jpeg" alt="GREEN CHILLI">
+                <h3>GREEN CHILLI</h3>
+                <p>"Green chili adds spice and heat to dishes."</p>
+                <div class="price">₹50 per KG</div>
+                <button onclick="addToCart('GREEN CHILLI', 50)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="BEETROOT" data-price="30">
+                <img src="images/BEETROOT.webp" alt="BEETROOT">
+                <h3>BEETROOT</h3>
+                <p>"Beetroot is a vibrant and nutrient-rich root vegetable."</p>
+                <div class="price">₹30 per KG</div>
+                <button onclick="addToCart('BEETROOT', 30)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Organic Vegetables Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = {
+            items: 0,
+            totalPrice: 0,
+            products: []
+        };
+
+        function addToCart(name, price) {
+            cart.items += 1;
+            cart.totalPrice += price;
+            cart.products.push(name);
+            updateCartSummary();
+            alert(`${name} added to cart!`);
+        }
+
+        function updateCartSummary() {
+            document.getElementById("cart-items").innerText = cart.items;
+            document.getElementById("cart-total").innerText = cart.totalPrice;
+            const cartDetails = document.getElementById("cart-details");
+            cartDetails.innerHTML = "<strong>Products:</strong> " + cart.products.join(", ");
+        }
+
+        function toggleCartDetails() {
+            const cartDetails = document.getElementById("cart-details");
+            cartDetails.style.display = cartDetails.style.display === "none" || cartDetails.style.display === "" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
