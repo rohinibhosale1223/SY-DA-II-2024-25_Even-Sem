@@ -1,0 +1,133 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BookMyShow Clone - Home</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('/Users/vivekkalyani/Desktop/new codes/images/background-banner2.jpg') no-repeat center center fixed;
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      max-height: 800px;
+      overflow: hidden;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: slideshow 30s infinite ease-in-out;
+      filter: brightness(0.4);
+      z-index: -1;
+    }
+
+    @keyframes slideshow {
+      0% { background-image: url('images/bg1.jpg'); }
+      25% { background-image: url('images/bg2.jpg'); }
+      50% { background-image: url('images/bg3.jpg'); }
+      75% { background-image: url('images/bg4.jpg'); }
+      100% { background-image: url('images/bg1.jpg'); }
+    }
+
+    .content {
+      text-align: center;
+      color: #fff;
+      position: relative;
+      top: 35%;
+      transform: translateY(-35%);
+    }
+
+    .content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .content p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #ccc;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .btns a {
+      text-decoration: none;
+      background: #e50914;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .btns a:hover {
+      background: #b20710;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Adjust layout for 1280x800 screens */
+    @media screen and (max-width: 1280px) {
+      .content h1 { font-size: 2.8rem; }
+      .content p { font-size: 1.1rem; }
+      .btns a { padding: 12px 24px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="background"></div>
+    <div class="content">
+      <h1>Welcome to BookMyShow Clone</h1>
+      <p>Experience movies like never before. Book tickets now!</p>
+      <div class="btns">
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="movies.html">Browse Movies</a>
+      </div>
+    </div>
+  </div>
+
+    <div class="btns" id="logged-out-buttons">
+  <a href="login.html">Login</a>
+  <a href="register.html">Register</a>
+  <a href="movies.html">Browse Movies</a>
+</div>
+
+<div class="btns" id="logged-in-buttons" style="display: none;">
+  <a href="profile.html">Profile</a>
+  <a href="movies.html">Browse Movies</a>
+  <a href="cart.html">Cart</a>
+</div>
+
+  <script>
+  window.onload = function () {
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+    document.getElementById("logged-in-buttons").style.display = isLoggedIn ? "block" : "none";
+    document.getElementById("logged-out-buttons").style.display = isLoggedIn ? "none" : "block";
+  };
+</script>
+
+</body>
+</html>

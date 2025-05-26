@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - BookMyShow</title>
+  <link rel="stylesheet" href="form.css">
+  <script defer>
+    function togglePassword(id) {
+      const passwordInput = document.getElementById(id);
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+
+    function validateRegister(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      // Simple password match check
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return false;
+      }
+
+      alert("Registration successful!");
+      // Redirect to login
+      window.location.href = "login.html";
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <form onsubmit="return validateRegister(event)">
+      <h2>Register</h2>
+
+      <input type="text" name="name" id="name" placeholder="Full Name" required>
+      <input type="email" name="email" id="email" placeholder="Email" required>
+
+      <input type="password" name="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+
+      <!-- Password toggle line -->
+      <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+        <input type="checkbox" id="showPassword" onclick="togglePassword('password')">
+        <label for="showPassword" style="color: white;">Show Password</label>
+      </div>
+
+      <button type="submit">Register</button>
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>
