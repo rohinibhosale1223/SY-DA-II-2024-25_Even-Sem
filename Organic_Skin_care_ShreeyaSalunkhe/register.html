@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - PureGlow Organic Skincare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .form-container {
+            width: 320px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .form-container label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:disabled {
+            background-color: #999;
+        }
+        .form-container button:hover:not(:disabled) {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+        .success {
+            border-color: green !important;
+        }
+        .fail {
+            border-color: red !important;
+        }
+        .show-pass {
+            display: flex;
+            align-items: center;
+            margin: 5px 0 15px 0;
+        }
+        .show-pass input {
+            margin-right: 8px;
+            width: auto;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .password-strength {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .strength-weak { color: #ff4444; }
+        .strength-medium { color: #ffaa00; }
+        .strength-strong { color: #4CAF50; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 Join PureGlow</h1>
+    </header>
+
+    <div class="back-link">
+        <a href="home.html">← Back to Home</a>
+    </div>
+
+    <div class="form-container">
+        <h2 style="text-align: center; color: #333;">Create Your Account</h2>
+        <form id="registerForm" action="register.php" method="POST">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <div class="error" id="nameError"></div>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError"></div>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <div class="error" id="phoneError"></div>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div class="password-strength" id="passwordStrength"></div>
+            <div class="error" id="passwordError"></div>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <div class="error" id="confirmPasswordError"></div>
+
+            <div class="show-pass">
+                <input type="checkbox" id="showPassword" onchange="togglePassword()">
+                <label for="showPassword">Show Passwords</label>
+            </div>
+
+            <div class="show-pass">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#" onclick="showTerms()">Terms & Conditions</a></label>
+            </div>
+            <div class="error" id="termsError"></div>
+
+            <div class="show-pass">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <label for="newsletter">Subscribe to our newsletter for skincare tips & offers</label>
+            </div>
+
+            <button type="submit" id="registerBtn">Create Account</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 PureGlow Organic Skincare. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirmPassword');
+            const showPasswordCheckbox = document.getElementById('showPassword');
+            
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text';
+                confirmPasswordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+                confirmPasswordField.type = 'password';
+            }
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+
+        function checkPasswordStrength(password) {
+            const strengthElement = document.getElementById('passwordStrength');
+            let strength = 0;
+            let feedback = '';
+
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            switch (strength) {
+                case 0:
+                case 1:
+                case 2:
+                    strengthElement.textContent = 'Password strength: Weak';
+                    strengthElement.className = 'password-strength strength-weak';
+                    break;
+                case 3:
+                case 4:
+                    strengthElement.textContent = 'Password strength: Medium';
+                    strengthElement.className = 'password-strength strength-medium';
+                    break;
+                case 5:
+                    strengthElement.textContent = 'Password strength: Strong';
+                    strengthElement.className = 'password-strength strength-strong';
+                    break;
+            }
+
+            return strength >= 3;
+        }
+
+        function showTerms() {
+            alert('Terms & Conditions:\n\n1. You must be 18+ to create an account\n2. Provide accurate information\n3. Protect your account credentials\n4. Use our products as directed\n5. We respect your privacy and will not share your data\n\nBy creating an account, you agree to these terms.');
+        }
+
+        // Real-time password strength checking
+        document.getElementById('password').addEventListener('input', function() {
+            checkPasswordStrength(this.value);
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(el => el.textContent = '');
+            
+            const successElements = document.querySelectorAll('.success, .fail');
+            successElements.forEach(el => el.classList.remove('success', 'fail'));
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAccepted = document.getElementById('terms').checked;
+            
+            let isValid = true;
+
+            // Validate full name
+            if (!fullName) {
+                document.getElementById('nameError').textContent = 'Full name is required';
+                document.getElementById('fullName').classList.add('fail');
+                isValid = false;
+            } else if (fullName.length < 2) {
+                document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+                document.getElementById('fullName').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('fullName').classList.add('success');
+            }
+
+            // Validate email
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                document.getElementById('email').classList.add('fail');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('email').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('email').classList.add('success');
+            }
+
+            // Validate phone
+            if (!phone) {
+                document.getElementById('phoneError').textContent = 'Phone number is required';
+                document.getElementById('phone').classList.add('fail');
+                isValid = false;
+            } else if (!validatePhone(phone)) {
+                document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
+                document.getElementById('phone').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('phone').classList.add('success');
+            }
+
+            // Validate password
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Password is required';
+                document.getElementById('password').classList.add('fail');
+                isValid = false;
+            } else if (password.length < 8) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters';
+                document.getElementById('password').classList.add('fail');
+                isValid = false;
+            } else if (!checkPasswordStrength(password)) {
+                document.getElementById('passwordError').textContent = 'Password is too weak. Use uppercase, lowercase, numbers, and symbols.';
+                document.getElementById('password').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('password').classList.add('success');
+            }
+
+            // Validate confirm password
+            if (!confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Please confirm your password';
+                document.getElementById('confirmPassword').classList.add('fail');
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                document.getElementById('confirmPassword').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('confirmPassword').classList.add('success');
+            }
+
+            // Validate terms acceptance
+            if (!termsAccepted) {
+                document.getElementById('termsError').textContent = 'You must accept the terms and conditions';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Disable button and show loading
+                const registerBtn = document.getElementById('registerBtn');
+                registerBtn.disabled = true;
+                registerBtn.textContent = 'Creating Account...';
+
+                // Simulate registration process (replace with actual form submission)
+                setTimeout(() => {
+                    alert('Account created successfully! Welcome to PureGlow!');
+                    localStorage.setItem('user', JSON.stringify({
+                        email: email, 
+                        name: fullName,
+                        phone: phone
+                    }));
+                    window.location.href = 'home.html';
+                }, 1500);
+
+                // Uncomment this line to enable actual PHP form submission
+                 this.submit();
+            }
+        });
+
+        // Remove error styling on input focus
+        const inputs = ['fullName', 'email', 'phone', 'password', 'confirmPassword'];
+        inputs.forEach(inputId => {
+            document.getElementById(inputId).addEventListener('focus', function() {
+                this.classList.remove('fail');
+                const errorElement = document.getElementById(inputId + 'Error');
+                if (errorElement) errorElement.textContent = '';
+            });
+        });
+    </script>
+</body>
+</html>

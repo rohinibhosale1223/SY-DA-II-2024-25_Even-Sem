@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PureGlow Organic Skincare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .form-container {
+            width: 320px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .form-container label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:disabled {
+            background-color: #999;
+        }
+        .form-container button:hover:not(:disabled) {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+        .success {
+            border-color: green !important;
+        }
+        .fail {
+            border-color: red !important;
+        }
+        .show-pass {
+            display: flex;
+            align-items: center;
+            margin: 5px 0 15px 0;
+        }
+        .show-pass input {
+            margin-right: 8px;
+            width: auto;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 PureGlow Login</h1>
+    </header>
+
+    <div class="back-link">
+        <a href="home.html">← Back to Home</a>
+    </div>
+
+    <div class="form-container">
+        <h2 style="text-align: center; color: #333;">Welcome Back!</h2>
+        <form id="loginForm" action="login.php" method="POST">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError"></div>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div class="error" id="passwordError"></div>
+
+            <div class="show-pass">
+                <input type="checkbox" id="showPassword" onchange="togglePassword()">
+                <label for="showPassword">Show Password</label>
+            </div>
+
+            <button type="submit" id="loginBtn">Login</button>
+        </form>
+
+        <div class="login-link">
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
+            <p><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 PureGlow Organic Skincare. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const showPasswordCheckbox = document.getElementById('showPassword');
+            
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function forgotPassword() {
+            alert('Password reset functionality will be implemented soon. Please contact support at info@pureglow.com');
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            let isValid = true;
+
+            // Validate email
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                document.getElementById('email').classList.add('fail');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('email').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('email').classList.remove('fail');
+                document.getElementById('email').classList.add('success');
+            }
+
+            // Validate password
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Password is required';
+                document.getElementById('password').classList.add('fail');
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+                document.getElementById('password').classList.add('fail');
+                isValid = false;
+            } else {
+                document.getElementById('password').classList.remove('fail');
+                document.getElementById('password').classList.add('success');
+            }
+
+            if (isValid) {
+                // Disable button and show loading
+                const loginBtn = document.getElementById('loginBtn');
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Logging in...';
+
+                // Simulate login process (replace with actual form submission)
+                setTimeout(() => {
+                    // For demo purposes, check for a simple test account
+                    if (email === 'test@pureglow.com' && password === 'password') {
+                        alert('Login successful! Welcome back!');
+                        localStorage.setItem('user', JSON.stringify({email: email, name: 'Test User'}));
+                        window.location.href = 'home.html';
+                    } else {
+                        alert('Invalid credentials. Try test@pureglow.com / password for demo.');
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = 'Login';
+                    }
+                }, 1000);
+
+                // Uncomment this line to enable actual PHP form submission
+                this.submit();
+            }
+        });
+
+        // Remove error styling on input focus
+        document.getElementById('email').addEventListener('focus', function() {
+            this.classList.remove('fail');
+            document.getElementById('emailError').textContent = '';
+        });
+
+        document.getElementById('password').addEventListener('focus', function() {
+            this.classList.remove('fail');
+            document.getElementById('passwordError').textContent = '';
+        });
+    </script>
+</body>
+</html>
