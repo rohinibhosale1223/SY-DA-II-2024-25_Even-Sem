@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register - ShopZone</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff8cb4;
+      --green: #a8d5ba;
+      --white: #ffffff;
+      --dark: #111111;
+      --dark-green: #0d6b40;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--white);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--green);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--pink);
+    }
+
+    nav a {
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--green);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #ffeef5;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: var(--pink);
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .register-section {
+      padding: 60px 20px;
+      background-color: #ffeef5;
+      display: flex;
+      justify-content: center;
+    }
+
+    .register-box {
+      background-color: var(--white);
+      border: 2px solid var(--pink);
+      padding: 40px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-box h2 {
+      text-align: center;
+      color: var(--pink);
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      background-color: var(--dark-green);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0b5935;
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .switch-link a {
+      color: var(--pink);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: var(--pink);
+      text-align: center;
+      padding: 20px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ShopZone</h1>
+    <p>Your Beauty, Our Passion</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Register Now</h1>
+    <p>Join the ShopZone family!</p>
+  </div>
+
+  <form action="register.php" method="POST">
+    <section class="register-section">
+      <div class="register-box">
+        <h2>Registration Form</h2>
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="full_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+          </div>
+        </div>
+
+        <button type="submit">Register</button>
+
+        <div class="switch-link">
+          Already have an account? <a href="login.html">Login here</a>
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <footer>
+    &copy; 2025 ShopZone. All rights reserved.
+  </footer>
+
+</body>
+</html>

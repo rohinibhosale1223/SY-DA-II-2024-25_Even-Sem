@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopZone - Makeup Brand</title>
+  <style>
+    :root {
+      --pink: #ff8cb4;
+      --green: #a8d5ba;
+      --white: #ffffff;
+      --dark: #111111;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--white);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--green);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--pink);
+    }
+
+    nav a {
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--green);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #ffeef5;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: var(--pink);
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background-color: var(--white);
+    }
+
+    h2 {
+      color: var(--green);
+    }
+
+    #about-section {
+      background: linear-gradient(to right, var(--white), var(--pink));
+      padding: 120px 80px;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .about-left {
+      max-width: 450px;
+    }
+
+    .about-left h2 {
+      color: var(--pink);
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .about-left p {
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .about-icons {
+      margin-top: 30px;
+    }
+
+    .about-icons i {
+      margin-right: 15px;
+      font-size: 22px;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    .about-box {
+      background-color: var(--white);
+      color: var(--pink);
+      border: 2px solid var(--pink);
+      padding: 20px;
+      border-radius: 16px;
+      min-width: 220px;
+      flex: 1;
+      font-size: 16px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: var(--pink);
+      text-align: center;
+      padding: 20px;
+      color: white;
+    }
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <h1>ShopZone</h1>
+  <p>Our Product, Your Beauty</p>
+</header>
+
+<nav>
+  <a href="register page.html">Register</a>
+  <a href="login page.html">Login</a>
+  <a href="product page.html">Products</a>
+  <a href="cart page.html">Cart</a>
+  <a href="about">About Us</a>
+</nav>
+
+<div class="hero">
+  <h1>Welcome to ShopZone</h1>
+  <p>Where elegance meets simplicity — powered by passion and pigment.</p>
+</div>
+
+<!-- Other sections go here (Register, Login, Products) -->
+
+<section id="about-section">
+  <div class="about-left">
+    <h2>Makeup for everyone</h2>
+    <p>Discover accessible & super-affordable makeup designed for everyone. Based in India, we're here to embrace your unique and diverse beauty with us.</p>
+    <div class="about-icons">
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+      <i class="fab fa-youtube"></i>
+    </div>
+  </div>
+  <div class="about-box">Categories +</div>
+  <div class="about-box">Policies and More +</div>
+  <div class="about-box">Connect +</div>
+</section>
+
+<footer>
+  <p>&copy; 2025 ShopZone Cosmetics. Designed with ❤️ in India.</p>
+</footer>
+
+</body>
+</html>

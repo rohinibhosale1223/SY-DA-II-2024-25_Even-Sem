@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Website</title>
+  <style>
+    :root {
+      --pink: #ff8cb4;
+      --green: #a8d5ba;
+      --white: #ffffff;
+      --dark: #111111;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--white);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--green);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      background-color: var(--pink);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav a {
+      padding: 14px;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--green);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background-color: #ffeef5;
+      margin-top: 60px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: var(--pink);
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    /* About Section */
+    #about-section {
+      background: linear-gradient(to right, var(--white), var(--pink));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 80px 20px;
+    }
+
+    .about-left {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .about-left h2 {
+      color: var(--pink);
+    }
+
+    .about-left p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .team {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .team-member {
+      background: var(--white);
+      border: 2px solid var(--pink);
+      border-radius: 12px;
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+    }
+
+    .team-member img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .team-member h3 {
+      margin: 10px 0 5px;
+      color: var(--pink);
+    }
+
+    .team-member p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Forms */
+    form {
+      background-color: #f7f7f7;
+      padding: 30px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    form h3 {
+      margin-bottom: 20px;
+      color: var(--pink);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      background-color: var(--pink);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--green);
+    }
+
+    footer {
+      background-color: var(--pink);
+      text-align: center;
+      padding: 20px;
+      color: white;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Project</h1>
+  </header>
+
+  <nav>
+    <a href="#about-section">About</a>
+    <a href="#register">Register</a>
+    <a href="#login">Login</a>
+    <a href="#team">Team</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Welcome to Our Website</h1>
+    <p>Learn more about our mission, history, and amazing team!</p>
+  </div>
+
+  <section id="about-section">
+    <div class="about-left">
+      <h2>About Us</h2>
+      <p>Founded in 2024, our mission is to build amazing digital products. We focus on innovation, design, and usability to empower businesses and individuals through technology.</p>
+    </div>
+
+    <div class="about-left">
+      <h2>Our Values</h2>
+      <p>We believe in collaboration, integrity, and excellence. Our diverse team works together to make dreams into real-world solutions.</p>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2>Meet the Team</h2>
+    <div class="team">
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200" alt="Member 1">
+        <h3>Disha</h3>
+        <p>Front-end Developer</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200" alt="Member 2">
+        <h3>Sanskriti</h3>
+        <p>UI/UX Designer</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200" alt="Member 3">
+        <h3>Shridhar</h3>
+        <p>Backend Developer</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/200" alt="Member 4">
+        <h3>Suraj</h3>
+        <p>Project Manager</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="register">
+    <h2>Admin/User Registration</h2>
+    <form>
+      <h3>Register Here</h3>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Create Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <input type="submit" value="Register">
+    </form>
+  </section>
+
+  <section id="login">
+    <h2>Admin/User Login</h2>
+    <form>
+      <h3>Login Here</h3>
+      <input type="text" placeholder="Username or Email" required>
+      <input type="password" placeholder="Password" required>
+      <input type="submit" value="Login">
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Our Project. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

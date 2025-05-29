@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopZone - Cart</title>
+  <style>
+    :root {
+      --pink: #ff8cb4;
+      --green: #a8d5ba;
+      --white: #ffffff;
+      --dark-green: #0d6b40;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff5f8;
+      color: #333;
+    }
+
+    header {
+      background-color: var(--pink);
+      padding: 20px;
+      color: var(--white);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .header-title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .cart-section {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .empty-msg {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 40px;
+      color: #888;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      display: inline-block;
+      background-color: var(--dark-green);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      background-color: #0b5935;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-title">Your Cart</div>
+      <nav>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cart-section" id="cart-container">
+    <!-- Cart items will be inserted here dynamically -->
+  </div>
+
+  <script>
+    const cartContainer = document.getElementById('cart-container');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cart.length === 0) {
+      cartContainer.innerHTML = '<div class="empty-msg">Your cart is empty 😔</div>';
+    } else {
+      let total = 0;
+      cart.forEach(item => {
+        total += parseFloat(item.price);
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+          <div>
+            <strong>${item.name}</strong><br/>
+            <small>Category: ${item.category}</small>
+          </div>
+          <div>₹${item.price}</div>
+        `;
+        cartContainer.appendChild(itemDiv);
+      });
+
+      const totalDiv = document.createElement('div');
+      totalDiv.className = 'cart-total';
+      totalDiv.textContent = `Total: ₹${total}`;
+      cartContainer.appendChild(totalDiv);
+
+      const backBtn = document.createElement('a');
+      backBtn.href = 'index.html';
+      backBtn.className = 'back-btn';
+      backBtn.textContent = '⬅ Back to Home';
+      cartContainer.appendChild(backBtn);
+    }
+  </script>
+
+</body>
+</html>
